@@ -1,25 +1,104 @@
 <template>
   <Layout>
+    <!-- Page Header -->
+    <header class="masthead"   :style="{
+        backgroundImage: `url(${GRIDSOME_API_URL +  $page.general.edges[0].node.cover.url})`
+      }">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="site-heading">
+              <h1>{{$page.general.edges[0].node.title}}</h1>
+              <span class="subheading">{{$page.general.edges[0].node.subTitle}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
 
-    <!-- Learn how to use images here: https://gridsome.org/docs/images -->
-    <g-image alt="Example image" src="~/favicon.png" width="135" />
-
-    <h1>Hello, world!</h1>
-
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur excepturi labore tempore expedita, et iste tenetur suscipit explicabo! Dolores, aperiam non officia eos quod asperiores
-    </p>
-
-    <p class="home-links">
-      <a href="https://gridsome.org/docs/" target="_blank" rel="noopener">Gridsome Docs</a>
-      <a href="https://github.com/gridsome/gridsome" target="_blank" rel="noopener">GitHub</a>
-    </p>
-
+    <!-- Main Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-preview" v-for="edge in $page.posts.edges" :key="edge.node.id">
+            <g-link :to="'/post/'+ edge.node.id">
+              <h2 class="post-title">
+                {{edge.node.title}}
+              </h2>
+            </g-link>
+            <p class="post-meta">Posted by
+              <a href="#">{{edge.node.content}}</a>
+             {{edge.node.created_at}}</p>
+             <p>
+               <span v-for="tag in edge.node.tags" :key="tag.id">
+                  <g-link :to="'/tag/' + tag.id" >{{tag.title}} </g-link>&nbsp;
+               </span>
+             </p>
+          </div>
+          <hr>
+          <div class="post-preview">
+            <a href="post.html">
+              <h2 class="post-title">
+                I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.
+              </h2>
+            </a>
+            <p class="post-meta">Posted by
+              <a href="#">Start Bootstrap</a>
+              on September 18, 2019</p>
+          </div>
+          <hr>
+          <hr>
+          <!-- Pager -->
+          <Pager :info="$page.posts.pageInfo"></Pager>
+        </div>
+      </div>
+    </div>
   </Layout>
 </template>
+<page-query>
+query ($page: Int) {
+  posts:allStrapiPost(perPage: 2, page: $page) @paginate {
+    pageInfo {
+      totalPages
+      currentPage
+    }
+    edges{ 
+      node{
+        id,
+        title,
+        created_at,
+        content,
+        tags{
+          id,
+          title
+        }
+      }
+    }
+  }
 
+ general:allStrapiGeneral{
+    edges{
+      node{
+        id,
+        title,
+        subTitle,
+        cover{
+          url
+        }
+      }
+    }
+  }
+}
+</page-query>
 <script>
+import { Pager } from 'gridsome'
+
 export default {
+  name:'Homepage',
+   components: {
+    Pager
+  },
   metaInfo: {
     title: 'Hello, world!'
   }
@@ -27,7 +106,5 @@ export default {
 </script>
 
 <style>
-.home-links a {
-  margin-right: 1rem;
-}
+
 </style>
