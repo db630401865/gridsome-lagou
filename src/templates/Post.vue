@@ -2,15 +2,15 @@
   <Layout>
     <!-- Page Header -->
     <header class="masthead" 
-      :style="{
-        backgroundImage: `url(${GRIDSOME_API_URL + $page.post.cover.url})`
-      }"
     >
+       <!-- :style="{
+        backgroundImage: `url(${GRIDSOME_API_URL + $page.post.cover.url})`
+      }" -->
       <div class="overlay"></div>
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="post-heading">
+            <div class="post-heading post-heading-a">
               <h1>{{$page.post.title}}</h1>
               <!-- <h2 class="subheading">Problems look mighty small from 150 miles up</h2> -->
               <span class="meta">Posted by
@@ -26,9 +26,8 @@
     <article>
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto" v-html="meToHtml($page.post.content)">
-            
-          </div>
+          <div class="col-lg-8 col-md-10 mx-auto" v-html="meToHtml($page.post.content)"></div>
+          <div class="box"> <img class="imgs" style="width:550px" :src='GRIDSOME_API_URL + $page.post.cover.url' alt=""></div>
         </div>
       </div>
     </article>
@@ -65,3 +64,11 @@ export default {
  }
 }
 </script>
+<style scoped>
+.box{
+  text-align: center;
+}
+.post-heading-a{
+  color: #000 !important;
+}
+</style>

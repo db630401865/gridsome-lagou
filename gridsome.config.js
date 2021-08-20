@@ -22,10 +22,10 @@ module.exports = {
         apiURL: process.env.GRIDSOME_API_URL,
         queryLimit: 1000, // Defaults to 100
         // 设置集合
-        contentTypes: ['post','tag'],
+        contentTypes: ['post','tag','detail'],
         // typeName:'Strapi'
         //设置单个标题
-        singleTypes: ['general'],
+        singleTypes: ['general','on'],
         // Possibility to login with a Strapi user,
         // when content types are not publicly available (optional).
         // loginData: {

@@ -3,25 +3,25 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <g-link class="navbar-brand" to="/">Start Bootstrap</g-link>
+        <g-link class="navbar-brand" to="/">
+          <img  class="logo_svg" src="https://gridsome-forestry.netlify.app/assets/img/logo.332701b7.svg" alt="">
+        </g-link>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fas fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="post.html">Sample Post</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
-            </li>
+           <g-link class="nav-item" to="/journal">
+              <a class="nav-link active-link" :style="{
+                  color: this.color ?  this.color :''
+                }">Journal</a>
+            </g-link>
+            <g-link class="nav-item" to="/contact" >
+              <a :style="{
+                  color: this.color ?  this.color :''
+                }" class="nav-link active-link">Say Hi!</a>
+            </g-link>
           </ul>
         </div>
       </div>
@@ -34,35 +34,7 @@
     <footer>
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
-            <ul class="list-inline text-center">
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-            </ul>
-            <p class="copyright text-muted">Copyright &copy; Your Website 2020</p>
-          </div>
+          <p class="copyright text-muted">Copyright © 2021</p>
         </div>
       </div>
     </footer>
@@ -76,7 +48,17 @@ query {
   }
 }
 </static-query>
-
+<script>
+export default {
+  props:['color']
+}
+</script>
 <style>
-
+.logo_svg{
+  width: 60px;
+}
+.navbar-expand-lg .navbar-collapse{
+    position: absolute;
+    right: 40px
+}
 </style>

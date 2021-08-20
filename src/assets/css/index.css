@@ -178,27 +178,27 @@ img::-moz-selection {
 header.masthead {
   margin-bottom: 50px;
   background: no-repeat center center;
-  background-color: #868e96;
+  background-color: #fff;
   background-attachment: scroll;
   position: relative;
   background-size: cover;
 }
 
 header.masthead .overlay {
-  position: absolute;
+  /* position: absolute;
   top: 0;
   left: 0;
   height: 100%;
-  width: 100%;
-  background-color: #212529;
-  opacity: 0.5;
+  width: 100%; */
+  /* background-color: #212529; */
+  /* opacity: 0.5; */
 }
 
 header.masthead .page-heading,
 header.masthead .post-heading,
 header.masthead .site-heading {
   padding: 200px 0 150px;
-  color: white;
+  color: #f3f3f3;
 }
 
 @media only screen and (min-width: 768px) {
